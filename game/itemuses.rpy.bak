@@ -1,0 +1,63 @@
+label oviuse:
+    if persistent.items.count("keys"):
+        show screen mapScreen
+        $ renpy.pause(hard=True)
+    else:
+        "You shouldn't leave without your keys!"
+        show screen playerHouseScreen
+        $ renpy.pause(hard=True)
+
+label sankyuse:
+    if persistent.gamestate == 0:
+        $ sankyEnding += 1
+        if sankyEnding == 1:
+            show bed scolding at charbox
+            b "You can't go to sleep! You have to go to work!"
+            hide bed
+        if sankyEnding == 2:
+            show bed scolding at charbox
+            b "I'm being serious! There's no time to slack around!"
+            hide bed
+        if sankyEnding == 3:
+            show bed data at charbox
+            b "Are you trying to get fired from your new job?"
+            hide bed
+        if sankyEnding == 4:
+            show bed scolding at charbox
+            b "There's really no changing your mind, huh...."
+            hide bed
+        if sankyEnding == 5:
+            $ renpy.force_autosave(take_screenshot=False, block=False)
+            show bed scolding at charbox
+            b "Fine then. I'm not going to stop you."
+            hide bed
+        if sankyEnding == 6:
+            "Ahh.. The land of sleep calls me once again..."
+            jump sankygameover
+    if persistent.gamestate >= 1:
+        show bed happy at charbox
+        b "Looks like you're hard at work! Good job, user!"
+    show screen playerHouseScreen
+    $ renpy.pause(hard=True)
+
+label tyooviuse:
+    call workInside
+
+label jasonuse:
+    if persistent.jasonDialogue == 0:
+        call jasonintroduction
+    if persistent.jasonDialogue == 1:
+        call talktomanager
+    if persistent.jasonDialogue == 2:
+        call letsgetgoing
+    if persistent.jasonDialogue == 3:
+        call letsgetout
+
+label manageruse:
+    if persistent.managerDialogue == 0:
+        call managerintroduction
+    if persistent.managerDialogue == 1:
+        call talktojason
+
+label weststreetdooruse:
+    call westStreetHall

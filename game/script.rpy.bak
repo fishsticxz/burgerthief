@@ -1,0 +1,162 @@
+﻿# The script of the game goes in this file.
+
+# Declare persistent.characters used by this game. The color argument colorizes the
+# name of the character.
+define b = Character("SmartBed TM")
+define m = Character("Manager")
+define j = Character("Jason")
+
+transform charbox:
+    xpos 514
+    ypos 210
+
+#default current_room = "PlayerHouse"
+#default previous_room = ""
+
+# The game starts here.
+
+label start:
+
+    call variables
+    show screen uiScreen
+    call beginningofgame
+    return
+
+label beginningofgame:
+    scene bgbgbg
+    show screen playerHouseScreen
+    $ persistent.characters.append("bed")
+    show bed happy at charbox
+    b "Good morning!"
+    show bed data at charbox
+    b "You're starting at your new job today, and you've slept for a crisp 6 hours 14 minutes, of which 45 minutes have been REM sleep!"
+
+    menu:
+        "Ugh…… 5 more minutes please?":
+            call fivemins
+        "Good morning, SmartBed TM!":
+            call goodmorning
+        "Wait, why do you know about my new job?":
+            call newjob
+
+    b "Now hurry up, or you’ll be late!"
+    hide bed
+    window hide
+    $ renpy.pause(hard=True)
+
+label jasonintroduction:
+    $ persistent.characters.append("jason")
+    $ persistent.jasonDialogue = 1
+    show jason tired at charbox
+    j "Good morning, what can I get you?"
+    show jason normal at charbox
+
+    menu:
+        "Uhhh… A burger and large fries?":
+            call order
+        "Nothing dude, I’m here for work. I’m the new employee.":
+            call towork
+        "Good morning, fellow employee! I’m here for my 7:30 shift!":
+            call waytoohappy
+
+    j "I’m Jason, pretty much the only employee here, if you don’t count the fry cooking machine."
+    show jason tired at charbox
+    j "The manager keeps firing people because of some orders disappearing mysteriously, and now that there’s no one else working here anymore -"
+    j "She thinks she’s cracked the case and I’m the culprit who keeps stealing the food."
+    j "I don’t even eat!!!"
+    show jason normal at charbox
+
+    menu:
+        "Hmm, I hope she doesn’t get any ideas about me. I’ve got bills to pay too":
+            call isurehopeso
+        "Oh. That really sucks. I hope she gets off your case soon.":
+            call empath
+        "But… Maybe she’s right and it is you! I don’t know you, so… ":
+            call rude
+    j "Anyway, you should talk to the manager to get started."
+    hide jason
+    window hide
+    $ renpy.pause(hard=True)
+    return
+
+label talktomanager:
+    show jason normal at charbox
+    j "Didn't I tell you to talk to the manager?"
+    hide jason
+    window hide
+    $ renpy.pause(hard=True)
+    return
+
+
+label managerintroduction:
+    $ persistent.characters.append("manager")
+    $ persistent.managerDialogue = 1
+    $ persistent.jasonDialogue = 2
+    show manager normal at charbox
+    m "Mornin’. You must be the new employee. I’m the manager here, and I’ll be addressed as such."
+    m "Good to see you’re on time. Wouldn’t wanna get fired on your first day, am I right?"
+    m "Just kidding. But know that I don’t go easy on newbies!"
+    menu:
+        "Good morning to you too, ma’am!":
+            call goodjobkid
+        "Alright… Can I get to work then?":
+            call toofast
+        "What’s with the attitude?":
+            call justdont
+    m "You see, strange things have been happening in this here restaurant, and I feel like I’m just about to crack this case for good."
+    m "Orders have been disappearing left and right, and after monitoring the situation, I suspect the culprit is one of my employees, Jason!"
+    m "This can’t go on for any longer, or unsatisfied customers will be the downfall of my precious restaurant!"
+    m "I’m just waiting for the perfect moment to catch that tinhead red handed!"
+    menu:
+        "Jason… The android? Who doesn’t need to eat food?":
+            call jep
+        "Right… You’re quite the manager, it seems. (Whatever will pay my rent, I guess…)":
+            call mood
+        "That’s awful! I’ll help you catch the culprit!":
+            call youlikepeople
+    m "Let’s get you to work then!"
+    m "Here’s your first delivery order. Take Jason with you, he’ll show you the ropes"
+    show manager amused at charbox
+    m "Keep an eye on him though… I don’t want to see any more orders disappear!"
+    $ persistent.items.append("foodorder")
+    "Food order added to inventory!"
+    hide manager
+    window hide
+    $ renpy.pause(hard=True)
+    return
+
+label talktojason:
+    show manager normal at charbox
+    m "Talk to Jason and get going with the order!"
+    hide manager
+    window hide
+    $ renpy.pause(hard=True)
+    return
+
+label letsgetgoing:
+    $ persistent.jasonDialogue = 3
+    $ persistent.gamestate = 1
+    show jason normal at charbox
+    j"You got the order? Good job."
+    j"Looks like the address is West street 6B and the order recipient is firstname lastname."
+    j"It’s not too far from here, so let’s get walking."
+    menu:
+        "Wait, walking? You have a delivery car, don’t you?":
+            call betrayed
+        "Alright, let’s go! I can’t wait to deliver my first order!":
+            call enthusiasmatitsbest
+        "Are you going to steal this food too?":
+            call rudeparttwo
+    j"Let’s go. We can’t keep the customer waiting."
+    hide jason
+    window hide
+    $ renpy.pause(hard=True)
+    return
+
+label letsgetout:
+    show jason normal at charbox
+    j "Come on, let's deliver this order."
+    hide jason
+    window hide
+    $ renpy.pause(hard=True)
+    return

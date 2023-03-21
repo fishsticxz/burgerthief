@@ -1,0 +1,114 @@
+label fivemins:
+    show bed scolding at charbox
+    b "No can do! My suggestion is to go to sleep a little bit earlier tomorrow, so you can wake up energetic and refreshed!"
+    return
+label goodmorning:
+    show bed happy at charbox
+    b "Oh! It’s nice to see you in such a good mood, despite the poor amount of sleep last night! Not to mention the quality…"
+    b "Nevertheless, I wish you a good day, user!"
+    return
+label newjob:
+    show bed scolding at charbox
+    b "It is of utmost importance that I stay on top of my user’s daily routines and changes in lifestyle, that might have an impact on the amount of rest needed per day!"
+    show bed happy at charbox
+    b "But don’t think about it any further, alright?"
+    return
+
+label order:
+    show jason happy at charbox
+    j "Alright then, coming right up…"
+    show jason tired at charbox
+    j "Wait, aren’t you the new employee? Don’t joke with me like this, can’t you see I’m already tired enough"
+    return
+label towork:
+    j "Oh, I see. About time I got some help around here. The manager is driving me nuts, but I’ve got bills to pay so no can do."
+    return
+label waytoohappy:
+    show jason tired at charbox
+    j "Okay okay I got it, but can you pipe it down please. You don’t know how bad android migraines can be."
+    show jason normal at charbox
+    return
+
+label isurehopeso:
+    j "Let’s hope for the best. Maybe together we can even solve this and make sure no one else gets fired over this."
+    return
+label empath:
+    j "Thanks. A bad work environment does wonders to your psyche, and it’s not the good kind of wonders."
+    return
+label rude:
+    j "Ha ha. Very funny."
+    return
+
+label goodjobkid:
+    show manager happy at charbox
+    m "I’m liking the enthusiasm. Don’t get too friendly, though. Right now I can’t trust anyone around here!"
+    show manager normal at charbox
+    return
+label toofast:
+    show manager amused at charbox
+    m "Not so fast, I have to tell you about some important things regarding this place."
+    show manager normal at charbox
+    return
+label justdont:
+    show manager amused at charbox
+    m "Don’t you attitude me, kiddo! Running a restaurant is serious business, and I ain’t got time for smiling right now."
+    show manager normal at charbox
+    return
+label jep:
+    show manager amused at charbox
+    m "You don’t know him… Just watch him, and you too will see how the orders just disappear into thin air."
+    show manager normal at charbox
+    return
+label mood:
+    show manager amused at charbox
+    m "For your own good, I’ll be taking that as a compliment."
+    show manager normal at charbox
+    return
+label youlikepeople:
+    show manager happy at charbox
+    m "Finally, someone who believes me! You seem like a proper employee, kiddo."
+    return
+
+label betrayed:
+    j "Company policy. The manager says fresh air and exercise is important, so we’re not allowed to use the car if the delivery route is short enough."
+    j "Bullshit if you ask me, but there’s nothing we can do about it"
+    return
+label enthusiasmatitsbest:
+    show jason tired at charbox
+    j "Uhh, that’s great. Enjoy your positivity and enthusiasm while it lasts."
+    return
+label rudeparttwo:
+    show jason tired at charbox
+    j "Stop joking with me. I’m already scared of losing my job, I don’t need another person blaming me for something I didn’t do."
+    return
+
+
+label variables:
+    $ interValue = 0
+    $ itemID = "none"
+    $ interUiOpen = False
+    $ invUiOpen = False
+    $ chartabUiOpen = False
+    $ mapUiOpen = False
+    $ persistent.items = []
+    $ persistent.characters = []
+    $ persistent.gamestate = 0
+    $ persistent.jasonDialogue = 0
+    $ persistent.managerDialogue = 0
+    $ persistent.kutriDialogue = 0
+    $ sankyEnding = 0
+    return
+
+label sankygameover:
+    "You got fired for not showing up to work!"
+    "Game Over!"
+    #layout.yesno_screen(Retry?, yes=Jump("playerHouse"), no=Jump("gameover"))
+
+label gameover:
+    $ MainMenu(confirm=False)()
+
+label itemuse:
+    call expression itemID + "use"
+
+label itemlook:
+    call expression itemID + "description"

@@ -19,7 +19,7 @@ screen uiScreen():
         imagebutton:
             idle "optionstxt.png"
             hover "optionstxthover.png"
-            action [ToggleScreen("optionsScreen"), ToggleVariable("optionsScreenUiOpen")]
+            action [ToggleScreen("preferences"), ToggleVariable("optionsScreenUiOpen")]
     if persistent.gamestate <= 1:
         image "morning.png" xpos 542 ypos 742
     if persistent.gamestate == 2 or persistent.gamestate == 3:

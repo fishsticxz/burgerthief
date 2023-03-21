@@ -258,20 +258,20 @@ label deliverydelivery:
     $ persistent.managerDialogue = 2
     menu:
         "Knock on the door":
-            call firstknock
+            call firstknock from _call_firstknock
         "Ring the bell":
-            call brokenbell
+            call brokenbell from _call_brokenbell
     "(The door opens)"
     show kutri neutralcustomer at charbox
     menu:
         "Hello, we have your order from Chompsie’s!":
-            call normalgreeting
+            call normalgreeting from _call_normalgreeting
         "Good day to you, valued customer! We’re from Chompsie’s Fast Food Restaurant and we’re here to deliver your deeee-licious order!":
-            call overenthusiasm
+            call overenthusiasm from _call_overenthusiasm
         "Hey there, we’ve got your grub.":
-            call chillgreeting
+            call chillgreeting from _call_chillgreeting
     c "Hand it over now!"
-    call givefoodornot
+    call givefoodornot from _call_givefoodornot_1
     show jason happy at charbox
     $ persistent.items.remove("foodorder")
     j "Alright, good job completing your first delivery."
@@ -300,11 +300,11 @@ label disaster:
     m "HOW COULD YOU LET THIS HAPPEN?!?"
     menu:
         "Uhh, let what happen, exactly?":
-            call youshouldknow
+            call youshouldknow from _call_youshouldknow
         "Oh no, has there been another food theft?":
-            call youknowit
+            call youknowit from _call_youknowit
         "*try to sneak out of the door*":
-            call notagoodidea
+            call notagoodidea from _call_notagoodidea
     m "A customer just called and told me that the food you went out to deliver hasn’t been received..."
     show manager wolf at charbox
     m "Even though the order has been confirmed as so."
@@ -312,11 +312,11 @@ label disaster:
     m "Care to explain what that’s about?"
     menu:
         "We delivered the order correctly, and I can vouch for Jason! He didn’t do anything!":
-            call vouchforjason
+            call vouchforjason from _call_vouchforjason
         "Uhhhh... If something happened it definitely wasn’t my fault!! Jason probably did it!":
-            call blamejason
+            call blamejason from _call_blamejason
         "Wait... Maybe the customer is lying?":
-            call blamecustomer
+            call blamecustomer from _call_blamecustomer
     show manager angry at charbox
     m "I don’t know what you two have done to mess this up, but you’ll be fixing it right now!"
     show manager wolf
@@ -347,11 +347,11 @@ label confusedjason:
     j "Even my super-advanced computing chips aren’t enough to wrap my head around this situation."
     menu:
         "That certainly is odd... Let’s see if we can figure something out.":
-            call veryodd
+            call veryodd from _call_veryodd
         "You probably did some kind of illusion trick and stole the food right in front of my eyes!":
-            call stillblamingjason
+            call stillblamingjason from _call_stillblamingjason
         "Wow, it’s a mystery... Not a murder mystery, but a burger mystery! I can’t wait to solve it!":
-            call burgermystery
+            call burgermystery from _call_burgermystery
     show jason normal at charbox
     j "Anyway. Let’s deliver this order, and get it right this time..."
     hide jason
@@ -372,19 +372,19 @@ label correctdelivery:
     $ persistent.gamestate = 3
     menu:
         "Knock on the door":
-            call asiakaskoputus
+            call asiakaskoputus from _call_asiakaskoputus
         "Ring the doorbell":
-            call itworksthistime
+            call itworksthistime from _call_itworksthistime
     show customer pissed at charbox
     c "Fucking finally! You pretty much ruined my chill movie time with your shitty service."
     c "You can be sure I’m not ordering from you again!"
     menu:
         "We’re so sorry. We promise this will never happen again.":
-            call weresosorry
+            call weresosorry from _call_weresosorry
         "It’s not our fault, we don’t know what happened!":
-            call notourfault
+            call notourfault from _call_notourfault
         "I think you’re the one trying to fool us and get another meal for free!":
-            call customercheater
+            call customercheater from _call_customercheater
     c "Nothing like this has ever happened when I’ve ordered from other fast food places around here."
     c "I’ll go back to ordering from Crispie’s, thank you very much."
     $ persistent.items.remove("foodorder")
@@ -406,11 +406,11 @@ label correctdelivery:
     j "But like, people change their clothes when they’re home right? That’s normal."
     menu:
         "Maybe... All the customers have identical twins living in the same building?":
-            call twinsies
+            call twinsies from _call_twinsies
         "What if it’s a giant prank organized by all the residents in this building? Perhaps they have something against your restaurant...":
-            call bigprank
+            call bigprank from _call_bigprank
         "...I still think it’s you.":
-            call sceptic
+            call sceptic from _call_sceptic
     show jason normal at charbox
     j "Anyway... We should probably investigate the situation."
     hide jason
@@ -423,11 +423,11 @@ label didyoufindanything:
     j "Did you figure out something?"
     menu:
         "Yeah, I think I did.":
-            call founditout
+            call founditout from _call_founditout
         "No, I still have no clue what happened.":
-            call noclue
+            call noclue from _call_noclue
         "Wouldn’t you like to know, burger boy?":
-            call burgerboy
+            call burgerboy from _call_burgerboy
     hide jason
     window hide
     $ renpy.pause(hard=True)
@@ -440,20 +440,20 @@ label hackerman:
     "Bitwizard Digital Addressboard. Please input password to access."
     menu:
         "12345":
-            call defaultpassword
+            call defaultpassword from _call_defaultpassword_1
         "5318008":
-            call boobies
+            call boobies from _call_boobies_1
         "password":
-            call seriously
+            call seriously from _call_seriously_1
 label welcome:
     show screen hackermanScreentwo
     "Welcome to Bitwizard Digital Addressboard! What would you like to do?"
-    call boardmenu
+    call boardmenu from _call_boardmenu_2
     $ renpy.pause(hard=True)
     return
 
 label justasking:
-    call choiceschoices
+    call choiceschoices from _call_choiceschoices
     $ renpy.pause(hard=True)
     return
 
@@ -462,7 +462,7 @@ label waitwait:
     "(The door opens)"
     show customer normal at charbox
     c "...What is it?"
-    call questions
+    call questions from _call_questions_1
     $ renpy.pause(hard=True)
     return
 
@@ -482,13 +482,13 @@ label sunkeskustelu:
     g"I can’t believe this... Just when the boss gave me a big enough raise to finally get the car of my dreams..."
     menu:
         "Oh no! Did you see the crime happening?":
-            call didyousee
+            call didyousee from _call_didyousee
         "Yeah, whatever gramps, I’m in the middle of something else right now!":
-            call stillveryrude
+            call stillveryrude from _call_stillveryrude
         "Ooh, was it the SolMobile model Z-1100 G7? With the LimitedAI from VisdomVorks Industries?":
-            call arewethecarguy
+            call arewethecarguy from _call_arewethecarguy
     g"I can probably tell you something about the incident, if you have any questions!"
-    call firsttheguestions
+    call firsttheguestions from _call_firsttheguestions
 
 label didyousee:
     show carguy worried at charbox
@@ -506,43 +506,43 @@ label arewethecarguy:
 label firsttheguestions:
     menu:
         "Did you see who stole it?":
-            call stealingperson
+            call stealingperson from _call_stealingperson
         "What’s on the register plate?":
-            call registerplate
+            call registerplate from _call_registerplate
         "Which direction did they go?":
-            call directionsfromthecarguy
+            call directionsfromthecarguy from _call_directionsfromthecarguy
     return
 label stealingperson:
     show carguy worried at charbox
     g "I think it was someone wearing a bright red jacket? I’m sorry I can’t say anything else about the culprit, my eyes aren’t the way they used to be..."
     show carguy normal
     g "Is there anything else you’d like to know?"
-    call finallyout
+    call finallyout from _call_finallyout
 
 label registerplate:
     show carguy normal at charbox
     g "The register number is L0V3-69. I chose it because my husband’s birthday is on the sixth of september!"
     show carguy normal
     g "Is there anything else you’d like to know?"
-    call finallyout
+    call finallyout from _call_finallyout_1
 
 label directionsfromthecarguy:
     show carguy worried at charbox
     g "I think they drove the car towards the main street... They left in quite the hurry, I hope they’re not causing any trouble in the traffic..."
     show carguy normal
     g "Is there anything else you’d like to know?"
-    call finallyout
+    call finallyout from _call_finallyout_2
 
 label finallyout:
     menu:
         "Did you see who stole it?":
-            call stealingperson
+            call stealingperson from _call_stealingperson_1
         "What’s on the register plate?":
-            call registerplate
+            call registerplate from _call_registerplate_1
         "Which direction did they go?":
-            call directionsfromthecarguy
+            call directionsfromthecarguy from _call_directionsfromthecarguy_1
         "Nope, I’m good!":
-            call loppukeskustelu
+            call loppukeskustelu from _call_loppukeskustelu
 
 label loppukeskustelu:
     $ persistent.managerDialogue = 4
@@ -563,11 +563,11 @@ label canjasonandihavethecar:
     m "Hey, what’s going on?"
     menu:
         "I’m borrowing the car to catch the burger thief!":
-           call imborrowing
+           call imborrowing from _call_imborrowing
         "Can I borrow the car to catch the burger thief?":
-            call caniborrow
+            call caniborrow from _call_caniborrow
         "Nothing!":
-            call nothing
+            call nothing from _call_nothing
 
 label imborrowing:
     show manager gasp at charbox

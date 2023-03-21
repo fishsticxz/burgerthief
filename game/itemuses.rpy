@@ -60,21 +60,21 @@ label jasonuse:
     if persistent.jasonDialogue == 3 and persistent.currentPlace == "workInside":
         call letsgetout from _call_letsgetout
     if persistent.jasonDialogue == 3 and persistent.currentPlace == "westStreetHall":
-        call checkaddress
+        call checkaddress from _call_checkaddress
     if persistent.jasonDialogue == 4:
-        call addressreminder
+        call addressreminder from _call_addressreminder
     if persistent.jasonDialogue == 5 and persistent.currentPlace == "westStreetHall":
-        call letsdeliver
+        call letsdeliver from _call_letsdeliver
     if persistent.jasonDialogue == 6 and persistent.currentPlace == "westStreet":
-        call confusedjason
+        call confusedjason from _call_confusedjason
     if persistent.jasonDialogue == 6 and persistent.currentPlace == "westStreetHall":
-        call checkitagain
+        call checkitagain from _call_checkitagain
     if persistent.jasonDialogue == 7 and persistent.currentPlace == "westStreetHall":
-        call letsdeliver
+        call letsdeliver from _call_letsdeliver_1
     if persistent.jasonDialogue == 8:
-        call didyoufindanything
+        call didyoufindanything from _call_didyoufindanything
     if persistent.jasonDialogue == 9:
-        call thiswasmissing
+        call thiswasmissing from _call_thiswasmissing
 
 label manageruse:
     if persistent.managerDialogue == 0:
@@ -82,13 +82,13 @@ label manageruse:
     if persistent.managerDialogue == 1:
         call talktojason from _call_talktojason
     if persistent.managerDialogue == 2:
-        call disaster
+        call disaster from _call_disaster
     if persistent.managerDialogue == 3 and persistent.currentPlace == "workInside":
-        call gonow
+        call gonow from _call_gonow
     if persistent.managerDialogue == 4:
-        call canjasonandihavethecar
+        call canjasonandihavethecar from _call_canjasonandihavethecar
     if persistent.managerDialogue == 5:
-        call wherewhere
+        call wherewhere from _call_wherewhere
 
 label weststreetdooruse:
     call westStreetHall from _call_westStreetHall
@@ -113,9 +113,9 @@ label addressboarduse:
         "...There!"
         menu:
             "Read again":
-                call addressboarduse
+                call addressboarduse from _call_addressboarduse
             "Close":
-                call closeboard
+                call closeboard from _call_closeboard
     if persistent.gamestate == 2:
         "Jeromy Gride: apt 037 - Shown Furcotte: apt 038"
         "Glenallen Mixon: apt 039 - Tony Smehrik: apt 040"
@@ -123,20 +123,20 @@ label addressboarduse:
         "...There!"
         menu:
             "Read again":
-                call addressboarduse
+                call addressboarduse from _call_addressboarduse_1
             "Close":
-                call closeboardtwo
+                call closeboardtwo from _call_closeboardtwo
     if persistent.gamestate == 3 and persistent.items.count("keyboard"):
         "Jeromy Gride: apt 037 - Shown Furcotte: apt 038"
         "Glenallen Mixon: apt 039 - Tony Smehrik: apt 040"
         "Tim Sandaele: apt 041 - Rey McScriff: apt 042"
         menu:
             "Read again":
-                call addressboarduse
+                call addressboarduse from _call_addressboarduse_2
             "Close":
-                call closeboardthree
+                call closeboardthree from _call_closeboardthree
             "Use keyboard":
-                call hackerman
+                call hackerman from _call_hackerman
     else:
         "Jeromy Gride: apt 037 - Shown Furcotte: apt 038"
         "Glenallen Mixon: apt 039 - Tony Smehrik: apt 040"
@@ -147,15 +147,15 @@ label addressboarduse:
 
 label hissiuse:
     if persistent.gamestate == 1 and persistent.jasonDialogue == 5:
-        call kutriKerros
+        call kutriKerros from _call_kutriKerros
     elif persistent.gamestate == 2 and persistent.jasonDialogue == 7:
-        call asiakasKerros
+        call asiakasKerros from _call_asiakasKerros
     elif persistent.gamestate >= 3 and persistent.listChecked == 1:
         menu:
             "Floor 3":
-                call asiakasKerros
+                call asiakasKerros from _call_asiakasKerros_1
             "Floor 5":
-                call kutriKerros
+                call kutriKerros from _call_kutriKerros_1
     else:
         "Wait! You don't even know which floor you're going to!"
         $ renpy.pause(hard=True)
@@ -163,27 +163,27 @@ label hissiuse:
 
 label kutrioviuse:
     if persistent.gamestate == 1 and persistent.managerDialogue == 1:
-        call deliverydelivery
+        call deliverydelivery from _call_deliverydelivery
     if persistent.gamestate == 3 and persistent.listChecked == 1 and persistent.jasonDialogue <= 8:
-        call interrogation
+        call interrogation from _call_interrogation
     if persistent.gamestate == 4 and persistent.listChecked == 1 and persistent.jasonDialogue >= 9:
-        call kutriHuone
+        call kutriHuone from _call_kutriHuone
     else:
-        call whatdoyouwant
+        call whatdoyouwant from _call_whatdoyouwant
 
 label asiakasoviuse:
     if persistent.gamestate == 2:
-        call correctdelivery
+        call correctdelivery from _call_correctdelivery
     if persistent.gamestate == 3 and persistent.listChecked == 1:
-        call justasking
+        call justasking from _call_justasking
     else:
-        call whatdoyouwant
+        call whatdoyouwant from _call_whatdoyouwant_1
 
 label carguyuse:
     if persistent.carguyDialogue == 0:
-        call sunkeskustelu
+        call sunkeskustelu from _call_sunkeskustelu
     else:
-        call jokutoinenjuttu
+        call jokutoinenjuttu from _call_jokutoinenjuttu
 
 label ikkunarikkiuse:
     "Let's take a peek... Oh! There are stairs right behind this window."

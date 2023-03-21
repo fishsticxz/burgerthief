@@ -91,7 +91,7 @@ label firstknock:
 label brokenbell:
     "(...)"
     "It seems to be broken..."
-    call deliverydelivery
+    call deliverydelivery from _call_deliverydelivery_1
 label normalgreeting:
     show kutri neutralcustomer at charbox
     c "Wonderful, thank you so much!"
@@ -107,9 +107,9 @@ label chillgreeting:
 label givefoodornot:
     menu:
         "Here you go!":
-            call givefood
+            call givefood from _call_givefood
         "I don't think I'm going to!":
-            call refuse
+            call refuse from _call_refuse
     return
 label givefood:
     hide kutri
@@ -126,7 +126,7 @@ label refuse:
     c "Hey, what’s this about? Aren’t you going to give me my food?"
     show jason normal at charbox
     j "What are you doing? You know this is your job, right?"
-    call givefoodornot
+    call givefoodornot from _call_givefoodornot
     return
 label youshouldknow:
     show manager angry at charbox
@@ -227,9 +227,9 @@ label noclue:
     j "Keep looking, there has to be something that can explain this mystery."
     menu:
         "Alright, I'll keep looking.":
-            call keeplooking
+            call keeplooking from _call_keeplooking
         "Can you give me a hand?":
-            call givemeahand
+            call givemeahand from _call_givemeahand
 
     return
 label keeplooking:
@@ -249,50 +249,50 @@ label burgerboy:
 label passwords:
     menu:
         "12345":
-            call defaultpassword
+            call defaultpassword from _call_defaultpassword
         "5318008":
-            call boobies
+            call boobies from _call_boobies
         "password":
-            call seriously
+            call seriously from _call_seriously
     return
 label defaultpassword:
     "(Access denied.)"
     "Nope... At least the person who put this up isn’t stupid enough to leave the password as default."
-    call passwords
+    call passwords from _call_passwords
 label boobies:
     "(Access denied.)"
     "A classic... Too bad that wasn’t it."
-    call passwords
+    call passwords from _call_passwords_1
 label seriously:
     "(Access granted!)"
     "Seriously???"
-    call welcome
+    call welcome from _call_welcome
 label boardmenu:
     menu:
         "See resident list":
-            call residentlist
+            call residentlist from _call_residentlist
         "Check recent changes":
-            call recentchanges
+            call recentchanges from _call_recentchanges
         "Log out":
-            call logout
+            call logout from _call_logout
 label residentlist:
     $ persistent.listChecked = 1
     "Jeromy Gride: apt 037 - Shown Furcotte: apt 038"
     "Glenallen Mixon: apt 039 - Tony Smehrik: apt 040"
     "Tim Sandaele: apt 041 - Rey McScriff: apt 042"
     "...Just a long list of the weirdest names I've seen."
-    call boardmenu
+    call boardmenu from _call_boardmenu
 label recentchanges:
     $ persistent.listChecked =  1
     "Today at 10:28, Rey McScriff moved from apt. 064 to apt. 042"
     "Today at 10:27, Kutri Zielo moved to apt. 064"
     "Yesterday at 13:15, Dean Wesrey moved from apt. 089"
-    call boardmenu
+    call boardmenu from _call_boardmenu_1
 label logout:
     "Thank you for using the BitWizard Digital Addressboard!"
     "See you soon, user!"
     window hide
-    call westStreetHall
+    call westStreetHall from _call_westStreetHall_1
     $ renpy.pause(hard=True)
     return
 label leaveit:
@@ -301,54 +301,54 @@ label leaveit:
 label choiceschoices:
     menu:
         "Knock on the door":
-            call asiakaskoputustwo
+            call asiakaskoputustwo from _call_asiakaskoputustwo
         "Ring the doorbell":
-            call itworksthistimetwo
+            call itworksthistimetwo from _call_itworksthistimetwo
         "Leave it":
-            call leaveit
+            call leaveit from _call_leaveit
     return
 label newchoices:
     menu:
         "Knock on the door":
-            call asiakaskoputustwo
+            call asiakaskoputustwo from _call_asiakaskoputustwo_1
         "Ring the doorbell":
-            call itworksthistimetwo
+            call itworksthistimetwo from _call_itworksthistimetwo_1
         "Leave it":
-            call leaveit
+            call leaveit from _call_leaveit_1
         "Wait":
-            call waitwait
+            call waitwait from _call_waitwait
 label asiakaskoputustwo:
     if knockAmount <= 3:
         $ knockAmount + 1
         "(knock knock knock)"
         "(...)"
-        call newchoices
+        call newchoices from _call_newchoices
     else:
         "STOP BOTHERING ME"
-        call leaveit
+        call leaveit from _call_leaveit_2
 label itworksthistimetwo:
     if ringAmount <= 3:
         $ ringAmount + 1
         "(ding dong)"
         "(...)"
-        call newchoices
+        call newchoices from _call_newchoices_1
     else:
         "LEAVE ME ALONE"
-        call leaveit
+        call leaveit from _call_leaveit_3
 label questions:
     menu:
         "Do you perhaps have a twin?":
-            call haveatwin
+            call haveatwin from _call_haveatwin
         "Did you recently move into this apartment? Like, earlier today?":
-            call didyoumove
+            call didyoumove from _call_didyoumove
         "Did you enjoy your meal?":
-            call enjoymeal
+            call enjoymeal from _call_enjoymeal
     c "Did you need something else?"
     menu:
         "Yeah, I just wanted to ask you...":
-            call questions
+            call questions from _call_questions
         "No, I’m good. Thanks for your help!":
-            call imgood
+            call imgood from _call_imgood
 label haveatwin:
     show customer normal at charbox
     c "...No? What makes you ask that? That’s a weird question to just pop on people."
